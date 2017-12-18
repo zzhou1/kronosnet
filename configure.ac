@@ -497,6 +497,9 @@ AC_CONFIG_FILES([
 		init/Makefile
 		libnozzle/Makefile
 		libnozzle/libnozzle.pc
+		libnozzle/tests/Makefile
+		libnozzle/man/Doxyfile
+		libnozzle/man/Makefile
 		kronosnetd/Makefile
 		kronosnetd/kronosnetd.logrotate
 		libknet/Makefile
