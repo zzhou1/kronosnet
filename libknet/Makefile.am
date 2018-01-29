@@ -11,10 +11,6 @@ MAINTAINERCLEANFILES	= Makefile.in
 
 include $(top_srcdir)/build-aux/check.mk
 
-SYMFILE			= libknet_exported_syms
-
-EXTRA_DIST		= $(SYMFILE)
-
 SUBDIRS			= . tests man
 
 libversion		= 1:0:0
@@ -81,10 +77,8 @@ libknet_la_SOURCES	= $(sources)
 
 libknet_la_CFLAGS	= $(AM_CFLAGS) $(PTHREAD_CFLAGS)
 
-EXTRA_libknet_la_DEPENDENCIES	= $(SYMFILE)
-
 libknet_la_LDFLAGS	= $(AM_LDFLAGS) \
-			  -Wl,--version-script=$(srcdir)/$(SYMFILE) \
+			  -export-symbols-regex '^knet_' \
 			  -Wl,-rpath=$(pkglibdir) \
 			  -version-number $(libversion)
 

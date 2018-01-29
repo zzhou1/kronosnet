@@ -11,9 +11,7 @@ MAINTAINERCLEANFILES	= Makefile.in
 include $(top_srcdir)/build-aux/check.mk
 
 
-SYMFILE			= libtap_exported_syms
-
-EXTRA_DIST		= $(SYMFILE) tap_updown_bad tap_updown_good api-test-coverage
+EXTRA_DIST		= tap_updown_bad tap_updown_good api-test-coverage
 
 sources			= libtap.c
 
@@ -34,10 +32,8 @@ lib_LTLIBRARIES		= libtap.la
 
 libtap_la_SOURCES	= $(sources)
 
-EXTRA_libtap_la_DEPENDENCIES	= $(SYMFILE)
-
 libtap_la_LDFLAGS	= $(AM_LDFLAGS) \
-			  -Wl,-version-script,$(srcdir)/$(SYMFILE) \
+			  -export-symbols-regex '^tap_' \
 			  -version-number $(libversion)
 
 TESTS			= $(check_PROGRAMS)
